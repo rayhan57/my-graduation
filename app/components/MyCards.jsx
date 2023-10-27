@@ -6,10 +6,10 @@ import ModalImage from "./ModalImage";
 
 const MyCards = ({ data }) => {
   const [show, setShow] = useState(false);
-  const [image, setImage] = useState("");
+  const [modalImageItem, setModalImageItem] = useState("");
 
-  const handleImageClick = (image) => {
-    setImage(image);
+  const handleImageClick = (item) => {
+    setModalImageItem(item);
     setShow(true);
   };
 
@@ -22,12 +22,14 @@ const MyCards = ({ data }) => {
               variant="top"
               src={item.url}
               className="rounded-0"
-              onClick={() => handleImageClick(item.url)}
+              onClick={() => handleImageClick(item)}
             />
           </Card>
         </Col>
       ))}
-      {show && <ModalImage show={show} setShow={setShow} image={image} />}
+      {show && (
+        <ModalImage show={show} setShow={setShow} item={modalImageItem} />
+      )}
     </>
   );
 };
